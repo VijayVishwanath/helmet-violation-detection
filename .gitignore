@@ -1,0 +1,80 @@
+# Ignore all files and folders except the main project
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore Python cache and virtual environments
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+.env/
+.venv/
+env/
+venv/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore logs and outputs
+*.log
+*.out
+
+# Ignore data and results folders (customize as needed)
+data/processed/
+data/model/
+results/
+output/
+outputs/
+checkpoints/
+**/runs/
+!/runs/
+models/
+experiments/
+runs/mlflow/
+mlflow_env/
+configs/tmp_dataset.yaml
+yolov8n.pt
+
+# Ignore temporary files
+*.tmp
+*.bak
+*.swp
+*.swo
+*.~*
+
+# Ignore IDE/editor folders
+.vscode/
+.idea/
+*.code-workspace
+
+# Ignore images and videos (customize as needed)
+*.bmp
+*.gif
+*.mp4
+*.avi
+*.mov
+
+# Ignore archives
+*.zip
+*.tar
+*.tar.gz
+*.rar
+*.7z
+
+# Ignore CSV and Excel files (customize as needed)
+*.xls
+*.xlsx
+
+# Ignore PDF and document files
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+
+# Ignore any other unrelated folders or files
+# (Add any additional patterns below as needed)

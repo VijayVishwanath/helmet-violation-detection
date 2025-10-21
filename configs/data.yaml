@@ -1,0 +1,39 @@
+train:
+  - ../data/model/train/cutmix/images
+  - ../data/model/train/rotation/images
+  - ../data/model/train/salt_pepper/images
+  - ../data/model/train/shadow/images
+  - ../data/model/train/synthetic/images
+  - ../data/model/train/zoom/images
+  - ../data/model/train/cutout/images
+  - ../data/model/train/edge/images
+  - ../data/model/train/grayscale/images
+  - ../data/model/train/gaussian/images
+  - ../data/model/train/mosaic/images
+  - ../data/model/train/flip/images
+  - ../data/model/train/raw/images
+val:
+  - ../data/model/val/cutmix/images
+  - ../data/model/val/flip/images
+  - ../data/model/val/raw/images
+  - ../data/model/val/rotation/images
+  - ../data/model/val/shadow/images
+  - ../data/model/val/synthetic/images
+  - ../data/model/val/zoom/images
+  - ../data/model/val/cutout/images
+  - ../data/model/val/edge/images
+  - ../data/model/val/grayscale/images
+  - ../data/model/val/gaussian/images
+  - ../data/model/val/salt_pepper/images  
+  - ../data/model/val/mosaic/images
+
+test: ../data/raw/test/images
+
+nc: 5
+
+names:
+  0: NumberPlate
+  1: Person
+  2: Helmet
+  3: Head
+  4: Motorbike

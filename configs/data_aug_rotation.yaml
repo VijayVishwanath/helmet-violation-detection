@@ -1,0 +1,12 @@
+train: ../data/model/train/rotation/images
+val: ../data/model/val/rotation/images
+test: ../data/raw/test/images
+
+nc: 5
+
+names:
+  0: NumberPlate
+  1: Person
+  2: Helmet
+  3: Head
+  4: Motorbike

@@ -1,0 +1,12 @@
+train: ../data/model/train/grayscale/images
+val: ../data/model/val/grayscale/images
+test: ../data/raw/test/images
+
+nc: 5
+
+names:
+  0: NumberPlate
+  1: Person
+  2: Helmet
+  3: Head
+  4: Motorbike
