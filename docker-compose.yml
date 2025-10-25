@@ -1,20 +1,43 @@
-version: '3.8'
+# Use an official Python image (Ubuntu-based)
+FROM python:3.10-slim
 
-services:
-  backend:
-    build: ./backend
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./backend:/app
-    environment:
-      - PYTHONPATH=/app
-    
-  frontend:
-    build: ./frontend
-    ports:
-      - "8501:8501"
-    depends_on:
-      - backend
-    environment:
-      - API_URL=http://backend:8000
+# Prevent Python from writing .pyc files and enable unbuffered logs
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+
+# Install OS-level dependencies (needed for OpenCV, Pillow, Torch, etc.)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential \
+    libgl1 \
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender1 \
+    git \
+    curl \
+    && rm -rf /var/lib/apt/lists/*
+
+# Create a non-root user for security
+RUN useradd -ms /bin/bash appuser
+WORKDIR /app
+USER appuser
+
+# Copy requirement file first for layer caching
+COPY --chown=appuser:appuser requirements.txt .
+
+# Upgrade pip and preinstall Pillow to prevent dependency resolver conflicts
+RUN python -m pip install --upgrade pip setuptools wheel && \
+    python -m pip uninstall -y pillow Pillow || true && \
+    pip cache purge || true && \
+    pip install "Pillow==10.0.1" && \
+    pip install -r requirements.txt
+
+# Copy the entire app source
+COPY --chown=appuser:appuser . .
+
+# Expose the port used by FastAPI/Streamlit
+EXPOSE 8000
+
+# Default command: run FastAPI app via uvicorn
+# Change 'main:app' to your actual module and app variable if different
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
